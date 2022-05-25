@@ -1,4 +1,4 @@
-# Roblox Cookie Checker
+# Roblox-Cookie-Checker
 
 Setup:
 
