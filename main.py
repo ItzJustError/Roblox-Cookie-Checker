@@ -1,3 +1,9 @@
+try:
+    import os
+    from os import system
+    system("title " + "Roblox Cookie Checker")
+except:
+    pass
 import requests
 while True:
     cookie = input("Enter Roblox Cookie: ")
