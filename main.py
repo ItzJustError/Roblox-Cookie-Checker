@@ -7,7 +7,7 @@ except:
 
 
 try:
-    import requests
+    import requests, colorama
 except Exception:
     while True:
         e = input("Requests Module Missing, Wanna Try Auto Fix It (y/n): ")
@@ -19,7 +19,7 @@ except Exception:
         exit()
     if e == "y":
         try:
-            os.system("pip install requests")
+            os.system("pip install requests colorama")
             print("It Shod Be Fixed Now, Press Enter To Start Main Program")
             input("")
         except Exception:
@@ -28,35 +28,37 @@ except Exception:
             exit()
 
 
+
+colorama.init(autoreset=True)
 while True:
     cookie = input("Enter Roblox Cookie: ")
     try:
         r = requests.get("https://www.roblox.com/mobileapi/userinfo", cookies={".ROBLOSECURITY": cookie}).json()
-        print("Cookie Is Valid")
+        print(colorama.Fore.GREEN + "Cookie Is Valid")
         try:
-            print("Acount User Id: " +  str(r["UserID"]))
+            print(colorama.Fore.GREEN + "Acount User Id: " +  str(r["UserID"]))
         except Exception:
-            print("Acount User Id: ERROR")
+            print(colorama.Fore.RED + "Acount User Id: ERROR")
         try:
-            print("Acount Username: " +  str(r["UserName"]))
+            print(colorama.Fore.GREEN + "Acount Username: " +  str(r["UserName"]))
         except Exception:
-            print("Acount Username: ERROR")
+            print(colorama.Fore.RED + "Acount Username: ERROR")
         try:    
-            print("Robux Balance: " +  str(r["RobuxBalance"]))
+            print(colorama.Fore.GREEN + "Robux Balance: " +  str(r["RobuxBalance"]))
         except Exception:
-            print("Robux Balance: ERROR")
+            print(colorama.Fore.RED + "Robux Balance: ERROR")
         try:    
-            print("Account Picture: " +  str(r["ThumbnailUrl"]))
+            print(colorama.Fore.GREEN + "Account Picture: " +  str(r["ThumbnailUrl"]))
         except Exception:
-            print("Account Picture: ERROR")
+            print(colorama.Fore.RED + "Account Picture: ERROR")
         try:    
-            print("Builders Club Member: " +  str(r["IsAnyBuildersClubMember"]))
+            print(colorama.Fore.GREEN + "Builders Club Member: " +  str(r["IsAnyBuildersClubMember"]))
         except Exception:
-            print("Builders Club Member: ERROR")
+            print(colorama.Fore.RED + "Builders Club Member: ERROR")
         try:    
-            print("Premium: " +  str(r["IsPremium"]))
+            print(colorama.Fore.GREEN + "Premium: " +  str(r["IsPremium"]))
         except Exception:
-            print("Premium: ERROR")
+            print(colorama.Fore.RED + "Premium: ERROR")
         while True:
             save = input("Wanna Save Info In A Txt File (y/n): ")
             if save == "y" or save == "n":
@@ -64,7 +66,7 @@ while True:
             else:
                 print("Enter A Valid Choice")
         if save == "y":
-            file = open(str(r["UserName"])+".txt", "a")
+            file = open(str(r["UserID"])+".txt", "a")
             try:
                 file.write("Acount User Id: " +  str(r["UserID"]) + "\n")
             except Exception:
