@@ -1,70 +1,112 @@
 try:
     import os
-    from os import system
-    system("title " + "Roblox Cookie Checker,   Made By blob#0005,   Github: github.com/blob0005")
+    os.system("title " + "Roblox Cookie Checker,   Made By blob#0005,   Github: github.com/blob0005")
 except:
     pass
 
 
+import time, sys
+
+def print015(text):
+    for c in text:
+        sys.stdout.write(c)
+        sys.stdout.flush()
+        time.sleep(0.015)
+    sys.stdout.write("\n")
+
+def print01(text):
+    for c in text:
+        sys.stdout.write(c)
+        sys.stdout.flush()
+        time.sleep(0.015)
+
+
 try:
-    import requests, colorama
-except Exception:
-    while True:
-        e = input("Requests Module Missing, Wanna Try Auto Fix It (y/n): ")
-        if e == "y" or e == "n":
-            break
-        else:
-            print("Enter A Valid Choice")
-    if e == "n":
-        exit()
-    if e == "y":
-        try:
-            os.system("pip install requests colorama")
-            print("It Shod Be Fixed Now, Press Enter To Start Main Program")
-            input("")
-        except Exception:
-            print("Error Fixing, Press Enter To Close Program")
-            input("")
-            exit()
+    import colorama, requests
+except:
+    sys.stdout.write("> ")
+    print015("Missing Required Modules, Press Enter To Download (May Not Always Work)")
+    input("")
+    try:
+        os.system("pip install colorama requests")
+    except:
+        pass
+    sys.stdout.write("> ")
+    print015("Problem Maybe Fixed Now, Restart The Program")
+    input("")
+    exit()
+
 
 
 
 colorama.init(autoreset=True)
 while True:
-    cookie = input("Enter Roblox Cookie: ")
+    os.system("cls")
+    sys.stdout.write(colorama.Fore.CYAN + "> ")
+    print01("Enter Roblox Cookie: ")
+    cookie = input("")
     try:
         r = requests.get("https://www.roblox.com/mobileapi/userinfo", cookies={".ROBLOSECURITY": cookie}).json()
-        print(colorama.Fore.GREEN + "Cookie Is Valid")
+        sys.stdout.write(colorama.Fore.CYAN + "> ")
+        print015("Cookie Is Valid")
         try:
-            print(colorama.Fore.GREEN + "Acount User Id: " +  str(r["UserID"]))
+            r["UserID"]
+            sys.stdout.write(colorama.Fore.CYAN + "> ")
+            print("Acount User Id: " +  str(r["UserID"]))
         except Exception:
-            print(colorama.Fore.RED + "Acount User Id: ERROR")
+            sys.stdout.write(colorama.Fore.RED + "> ")
+            print("Acount User Id: ERROR")
+        time.sleep(0.1)
         try:
-            print(colorama.Fore.GREEN + "Acount Username: " +  str(r["UserName"]))
+            r["UserName"]
+            sys.stdout.write(colorama.Fore.CYAN + "> ")
+            print("Acount Username: " +  str(r["UserName"]))
         except Exception:
-            print(colorama.Fore.RED + "Acount Username: ERROR")
-        try:    
-            print(colorama.Fore.GREEN + "Robux Balance: " +  str(r["RobuxBalance"]))
+            sys.stdout.write(colorama.Fore.RED + "> ")
+            print("Acount Username: ERROR")
+        time.sleep(0.1)
+        try:
+            r["RobuxBalance"]
+            sys.stdout.write(colorama.Fore.CYAN + "> ")
+            print("Robux Balance: " +  str(r["RobuxBalance"]))
         except Exception:
-            print(colorama.Fore.RED + "Robux Balance: ERROR")
-        try:    
-            print(colorama.Fore.GREEN + "Account Picture: " +  str(r["ThumbnailUrl"]))
+            sys.stdout.write(colorama.Fore.RED + "> ")
+            print("Robux Balance: ERROR")
+        time.sleep(0.1)
+        try:
+            r["ThumbnailUrl"]
+            sys.stdout.write(colorama.Fore.CYAN + "> ")
+            print("Account Picture: " +  str(r["ThumbnailUrl"]))
         except Exception:
-            print(colorama.Fore.RED + "Account Picture: ERROR")
-        try:    
-            print(colorama.Fore.GREEN + "Builders Club Member: " +  str(r["IsAnyBuildersClubMember"]))
+            sys.stdout.write(colorama.Fore.RED + "> ")
+            print("Account Picture: ERROR")
+        time.sleep(0.1)
+        try:
+            r["IsAnyBuildersClubMember"]
+            sys.stdout.write(colorama.Fore.CYAN + "> ")
+            print("Builders Club Member: " +  str(r["IsAnyBuildersClubMember"]))
         except Exception:
-            print(colorama.Fore.RED + "Builders Club Member: ERROR")
-        try:    
-            print(colorama.Fore.GREEN + "Premium: " +  str(r["IsPremium"]))
+            sys.stdout.write(colorama.Fore.RED + "> ")
+            print("Builders Club Member: ERROR")
+        time.sleep(0.1)
+        try:
+            r["IsPremium"]
+            sys.stdout.write(colorama.Fore.CYAN + "> ")
+            print("Premium: " +  str(r["IsPremium"]))
         except Exception:
-            print(colorama.Fore.RED + "Premium: ERROR")
+            sys.stdout.write(colorama.Fore.RED + "> ")
+            print("Premium: ERROR")
+        time.sleep(0.5)
+        print("")
         while True:
-            save = input("Wanna Save Info In A Txt File (y/n): ")
+            sys.stdout.write(colorama.Fore.CYAN + "> ")
+            print01("Wanna Save Info In A Txt File (y/n): ")
+            save = input("")
             if save == "y" or save == "n":
                 break
             else:
-                print("Enter A Valid Choice")
+                sys.stdout.write(colorama.Fore.RED + "> ")
+                print015("Enter A Valid Choice")
         if save == "y":
             file = open(str(r["UserID"])+".txt", "a")
             try:
@@ -92,8 +134,14 @@ while True:
             except Exception:
                 file.write("Premium: ERROR" + "\n")
             file.close()
-            print("Succsesfully Saved")
+            sys.stdout.write(colorama.Fore.CYAN + "> ")
+            print01("Succsesfully Saved Account Information")
             input("")
+        print("")
+        if save == "n":
+            print("")
     except Exception:
-        print("Cookie Invalid")
+        sys.stdout.write(colorama.Fore.RED + "> ")
+        print015("Cookie Invalid")
         input("")
+        print("")
